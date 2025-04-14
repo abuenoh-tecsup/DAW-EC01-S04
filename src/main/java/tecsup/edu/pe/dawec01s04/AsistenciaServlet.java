@@ -22,7 +22,7 @@ public class AsistenciaServlet extends HttpServlet {
         } else if ("eliminar".equals(action)) {
             eliminar(req, resp);
         } else {
-            resp.sendRedirect("index.html");
+            resp.sendRedirect("asistencia.html");
         }
     }
 
@@ -42,8 +42,10 @@ public class AsistenciaServlet extends HttpServlet {
             out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
             out.println("    <title>Lista de Asistencias</title>");
             out.println("    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>");
+            out.println("    <link rel='stylesheet' href='css/styles.css'>");
             out.println("</head>");
             out.println("<body class='bg-light'>");
+            imprimirNavbar(out);
             out.println("<div class='container mt-5'>");
             out.println("    <h2 class='mb-4 text-center'>Lista de Asistencias</h2>");
             out.println("    <div class='table-responsive'>");
@@ -85,7 +87,7 @@ public class AsistenciaServlet extends HttpServlet {
             out.println("        </table>");
             out.println("    </div>");
             out.println("    <div class='mt-3'>");
-            out.println("        <a href='index.html' class='btn btn-primary'>Registrar nueva asistencia</a>");
+            out.println("        <a href='asistencia.html' class='btn btn-primary'>Registrar nueva asistencia</a>");
             out.println("    </div>");
             out.println("</div>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>");
@@ -115,8 +117,10 @@ public class AsistenciaServlet extends HttpServlet {
                 out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
                 out.println("    <title>Editar Asistencia</title>");
                 out.println("    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>");
+                out.println("    <link rel='stylesheet' href='css/styles.css'>");
                 out.println("</head>");
                 out.println("<body class='bg-light'>");
+                imprimirNavbar(out);
                 out.println("<div class='container mt-5'>");
                 out.println("    <div class='row justify-content-center'>");
                 out.println("        <div class='col-md-6'>");
@@ -209,8 +213,10 @@ public class AsistenciaServlet extends HttpServlet {
             out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
             out.println("    <title>Eliminar Asistencia</title>");
             out.println("    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>");
+            out.println("    <link rel='stylesheet' href='css/styles.css'>");
             out.println("</head>");
             out.println("<body class='bg-light'>");
+            imprimirNavbar(out);
             out.println("<div class='container mt-5'>");
             out.println("    <div class='row justify-content-center'>");
             out.println("        <div class='col-md-6'>");
@@ -300,8 +306,10 @@ public class AsistenciaServlet extends HttpServlet {
             out.println("    <meta name='viewport' content='width=device-width, initial-scale=1'>");
             out.println("    <title>Confirmación</title>");
             out.println("    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet'>");
+            out.println("    <link rel='stylesheet' href='css/styles.css'>");
             out.println("</head>");
             out.println("<body class='bg-light'>");
+            imprimirNavbar(out);
             out.println("<div class='container mt-5'>");
             out.println("    <div class='row justify-content-center'>");
             out.println("        <div class='col-md-6'>");
@@ -341,11 +349,44 @@ public class AsistenciaServlet extends HttpServlet {
             out.println("<body class='bg-light'>");
             out.println("<div class='container mt-5'>");
             out.println("    <div class='alert alert-danger'>Error al procesar la operación: " + e.getMessage() + "</div>");
-            out.println("    <a href='index.html' class='btn btn-secondary'>Volver al inicio</a>");
+            out.println("    <a href='asistencia.html' class='btn btn-secondary'>Volver al inicio</a>");
             out.println("</div>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>");
             out.println("</body>");
             out.println("</html>");
         }
     }
+    private void imprimirNavbar(PrintWriter out) {
+        out.println("<nav class='navbar navbar-expand-lg navbar-dark' style='background-color: var(--primary-color);'>");
+        out.println("    <div class='container'>");
+        out.println("        <a class='navbar-brand' href='#'>");
+        out.println("            <i class='fas fa-graduation-cap me-2'></i>");
+        out.println("            SISTEMA ACADÉMICO");
+        out.println("        </a>");
+        out.println("        <button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarMain'>");
+        out.println("            <span class='navbar-toggler-icon'></span>");
+        out.println("        </button>");
+        out.println("        <div class='collapse navbar-collapse' id='navbarMain'>");
+        out.println("            <ul class='navbar-nav ms-auto'>");
+        out.println("                <li class='nav-item'>");
+        out.println("                    <a class='nav-link active' href='asistencia.html'>");
+        out.println("                        <i class='fas fa-clipboard-check me-1'></i> Asistencias");
+        out.println("                    </a>");
+        out.println("                </li>");
+        out.println("                <li class='nav-item'>");
+        out.println("                    <a class='nav-link' href='#'>");
+        out.println("                        <i class='fas fa-user-graduate me-1'></i>Pagina2");
+        out.println("                    </a>");
+        out.println("                </li>");
+        out.println("                <li class='nav-item'>");
+        out.println("                    <a class='nav-link' href='#'>");
+        out.println("                        <i class='fas fa-book me-1'></i>Pagina3");
+        out.println("                    </a>");
+        out.println("                </li>");
+        out.println("            </ul>");
+        out.println("        </div>");
+        out.println("    </div>");
+        out.println("</nav>");
+    }
+
 }
