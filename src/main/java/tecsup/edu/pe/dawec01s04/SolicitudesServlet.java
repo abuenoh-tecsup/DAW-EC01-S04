@@ -9,7 +9,7 @@ import java.sql.*;
 
 @WebServlet("/solicitudes")
 public class SolicitudesServlet extends HttpServlet {
-    private final String URL = "jdbc:mysql://localhost:3306/mesa_ayuda";
+    private final String URL = "jdbc:mysql://localhost:3306/ec01";
     private final String USER = "root";
     private final String PASS = "";
 
@@ -23,7 +23,7 @@ public class SolicitudesServlet extends HttpServlet {
         } else if ("eliminar".equals(action)) {
             eliminar(req, resp);
         } else {
-            resp.sendRedirect("base.html");
+            resp.sendRedirect("solicitud.html");
         }
     }
 
@@ -81,8 +81,8 @@ public class SolicitudesServlet extends HttpServlet {
                 out.println("                    <td>" + fechaCreacion + "</td>");
                 out.println("                    <td>");
                 out.println("                        <div class='btn-group' role='group'>");
-                out.println("                            <a href='asistencia?action=editar&id=" + id + "' class='btn btn-warning btn-sm'>Editar</a>");
-                out.println("                            <a href='asistencia?action=eliminar&id=" + id + "' class='btn btn-danger btn-sm'>Eliminar</a>");
+                out.println("                            <a href='solicitudes?action=editar&id=" + id + "' class='btn btn-warning btn-sm'>Editar</a>");
+                out.println("                            <a href='solicitudes?action=eliminar&id=" + id + "' class='btn btn-danger btn-sm'>Eliminar</a>");
                 out.println("                        </div>");
                 out.println("                    </td>");
                 out.println("                </tr>");
@@ -92,7 +92,7 @@ public class SolicitudesServlet extends HttpServlet {
             out.println("        </table>");
             out.println("    </div>");
             out.println("    <div class='mt-3'>");
-            out.println("        <a href='base.html' class='btn btn-primary'>Registrar nueva solicitud</a>");
+            out.println("        <a href='solicitud.html' class='btn btn-primary'>Registrar nueva solicitud</a>");
             out.println("    </div>");
             out.println("</div>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>");
@@ -141,7 +141,7 @@ public class SolicitudesServlet extends HttpServlet {
             }
             out.println("                </div>");
             out.println("                <div class='card-footer'>");
-            out.println("                    <a href='asistencia?action=listar' class='btn btn-primary'>Volver a la lista</a>");
+            out.println("                    <a href='solicitudes?action=listar' class='btn btn-primary'>Volver a la lista</a>");
             out.println("                </div>");
             out.println("            </div>");
             out.println("        </div>");
@@ -162,7 +162,7 @@ public class SolicitudesServlet extends HttpServlet {
             out.println("<body class='bg-light'>");
             out.println("<div class='container mt-5'>");
             out.println("    <div class='alert alert-danger'>Error al eliminar solicitud: " + e.getMessage() + "</div>");
-            out.println("    <a href='asistencia?action=listar' class='btn btn-secondary'>Volver a la lista</a>");
+            out.println("    <a href='solicitudes?action=listar' class='btn btn-secondary'>Volver a la lista</a>");
             out.println("</div>");
             out.println("<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js'></script>");
             out.println("</body>");
@@ -268,7 +268,7 @@ public class SolicitudesServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String accion = req.getParameter("accion");
-        String id_solicitud = req.getParameter("id_solicitud");
+        String id_solicitud = req.getParameter("id");
         String titulo = req.getParameter("titulo");
         String descripcion = req.getParameter("descripcion");
         String estado = req.getParameter("estado");
@@ -284,7 +284,7 @@ public class SolicitudesServlet extends HttpServlet {
 
             boolean exitoso = false;
             if ("actualizar".equals(accion)) {
-                PreparedStatement stmt = conn.prepareStatement("UPDATE solicitudes SET titulo=?, descripcion=?, estado=?, prioridad=?, fecha_creacion=? WHERE id_solicitud=?");
+                PreparedStatement stmt = conn.prepareStatement("UPDATE solicitudes SET titulo=?, descripcion=?, estado=?, prioridad=?, fecha_creacion=? WHERE id=?");
                 stmt.setString(1, titulo);
                 stmt.setString(2, descripcion);
                 stmt.setString(3, estado);
@@ -375,8 +375,18 @@ public class SolicitudesServlet extends HttpServlet {
         out.println("        <div class='collapse navbar-collapse' id='navbarMain'>");
         out.println("            <ul class='navbar-nav ms-auto'>");
         out.println("                <li class='nav-item'>");
-        out.println("    <a class='nav-link active' href='solicitudes?action=listar'>");
-        out.println("                        <i class='fas fa-clipboard-check me-1'></i> Solicitudes");
+        out.println("                    <a class='nav-link' href='asistencia.html'>");
+        out.println("                        <i class='fas fa-clipboard-check me-1'></i> ASISTENCIAS");
+        out.println("                    </a>");
+        out.println("                </li>");
+        out.println("                <li class='nav-item'>");
+        out.println("                    <a class='nav-link active' href='solicitud.html'>");
+        out.println("                        <i class='fas fa-user-graduate me-1'></i>SERVICIO TÉCNICO ");
+        out.println("                    </a>");
+        out.println("                </li>");
+        out.println("                <li class='nav-item'>");
+        out.println("                    <a class='nav-link' href='#'>");
+        out.println("                        <i class='fas fa-book me-1'></i>Pagina3");
         out.println("                    </a>");
         out.println("                </li>");
         out.println("            </ul>");

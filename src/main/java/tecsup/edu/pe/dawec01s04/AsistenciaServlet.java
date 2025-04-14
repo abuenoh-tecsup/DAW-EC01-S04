@@ -370,11 +370,11 @@ public class AsistenciaServlet extends HttpServlet {
         out.println("            <ul class='navbar-nav ms-auto'>");
         out.println("                <li class='nav-item'>");
         out.println("                    <a class='nav-link active' href='asistencia.html'>");
-        out.println("                        <i class='fas fa-clipboard-check me-1'></i> Asistencias");
+        out.println("                        <i class='fas fa-clipboard-check me-1'></i> ASISTENCIAS");
         out.println("                    </a>");
         out.println("                </li>");
         out.println("                <li class='nav-item'>");
-        out.println("                    <a class='nav-link' href='base.html'>");
+        out.println("                    <a class='nav-link' href='solicitud.html'>");
         out.println("                        <i class='fas fa-user-graduate me-1'></i>SERVICIO TÉCNICO ");
         out.println("                    </a>");
         out.println("                </li>");
